@@ -28,6 +28,17 @@ class ReduxForm extends Component {
   }
 }
 
+const vaildate = (formValues) => {
+  const error = {}
+  if (!formValues.title) { 
+    error.title= "You must enter a title"
+  }
+  if (!formValues.description) { 
+    error.description = "You must enter a description"
+  }
+  return error
+}
+
 export default reduxForm({
   form: 'reduxForm'
 })(ReduxForm)
