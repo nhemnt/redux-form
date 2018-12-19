@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 
 class ReduxForm extends Component {
-  renderInput({ input, label }) {
+  renderInput({ input, label, meta }) {
+    console.log(meta)
     return (
       <div className="label">
         <label>{label}</label>
         <input {...input} />
+        <div>{meta.error}</div>
       </div>
     )
   }
@@ -28,17 +30,20 @@ class ReduxForm extends Component {
   }
 }
 
-const vaildate = (formValues) => {
-  const error = {}
-  if (!formValues.title) { 
-    error.title= "You must enter a title"
+const validate = formValues => {
+  const errors = {}
+  console.log('yrp')
+  if (!formValues.title) {
+    console.log('here');
+    errors.title= 'You must enter a title'
   }
   if (!formValues.description) { 
-    error.description = "You must enter a description"
+    errors.description = 'You must enter a description'
   }
-  return error
+  return errors
 }
 
 export default reduxForm({
-  form: 'reduxForm'
+  form: 'reduxForm',
+  validate,
 })(ReduxForm)
