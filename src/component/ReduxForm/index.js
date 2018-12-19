@@ -9,13 +9,20 @@ class ReduxForm extends Component {
         <input {...input} />
       </div>
     )
-   }
+  }
+  onSubmit(propsValues) { 
+    console.log(propsValues)
+  }
+  
   render() {
     // console.log(this.props)
     return (
       <div>
-        <Field name="title" component={this.renderInput} label="Enter title"/>
-        <Field name="description" component={this.renderInput} label="Enter Description"/>
+        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+          <Field name="title" component={this.renderInput} label="Enter title"/>
+          <Field name="description" component={this.renderInput} label="Enter Description" />
+          <button>Submit</button>
+        </form>
       </div>
     );
   }
