@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 
 class ReduxForm extends Component {
-  renderInput({ input, label, meta }) {
-    console.log(meta)
+  renderError({ error, touched }) {
+    if (error && touched) { 
+      return (
+        <div>{error}</div>
+      )
+    }
+  }
+  renderInput = ({ input, label, meta }) => {
+    // console.log(meta)
     return (
       <div className="label">
         <label>{label}</label>
-        <input {...input} />
-        <div>{meta.error}</div>
+        <input {...input} autoComplete="off" />
+        {this.renderError(meta)}
       </div>
     )
   }
